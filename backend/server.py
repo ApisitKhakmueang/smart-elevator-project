@@ -14,8 +14,8 @@ from model.enviroment import SmartElevatorEnv # ตรวจสอบ path ใ�
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 
-vec_path = BASE_DIR / "model" / "vec_normalize_final.pkl"
-model_path = BASE_DIR / "model" / "ppo_smart_elevator_final"
+vec_path = BASE_DIR / "model" / "vec_normalize_final_lnwza.pkl"
+model_path = BASE_DIR / "model" / "ppo_smart_elevator_final_lnwza"
 
 app = FastAPI()
 
