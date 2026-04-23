@@ -1,11 +1,17 @@
 import { useState, useEffect } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 
+interface CarCalls {
+  car_call: number[]
+}
+
 export interface ElevatorState {
   step: number;
   total_score: number;
   elevators: number[];
   directions: number[];
+  hall_calls: number[]
+  car_calls: CarCalls[]
   reward: number;
   done: boolean;
 }
