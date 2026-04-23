@@ -1,21 +1,21 @@
 import sys
 import numpy as np
-# แก้ปัญหา ModuleNotFoundError: No module named 'numpy._core.numeric'
-sys.modules['numpy._core'] = np.core 
+import uvicorn
+import asyncio
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from stable_baselines3 import PPO
 from stable_baselines3.common.vec_env import DummyVecEnv, VecNormalize
-import uvicorn
-import asyncio
-from model.enviroment import SmartElevatorEnv # ตรวจสอบ path ให้ตรงกับโปรเจกต์ของคุณด้วยนะครับ
-
+from model.enviroment_final import SmartElevatorEnv
 from pathlib import Path
+
+# แก้ปัญหา ModuleNotFoundError: No module named 'numpy._core.numeric'
+sys.modules['numpy._core'] = np.core 
 BASE_DIR = Path(__file__).resolve().parent
 
-vec_path = BASE_DIR / "model" / "vec_normalize_final_lnwza.pkl"
-model_path = BASE_DIR / "model" / "ppo_smart_elevator_final_lnwza"
+vec_path = BASE_DIR / "model" / "vec_normalize_final.pkl"
+model_path = BASE_DIR / "model" / "ppo_smart_elevator_final"
 
 app = FastAPI()
 
