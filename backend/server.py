@@ -106,7 +106,7 @@ async def websocket_endpoint(websocket: WebSocket):
                 step += 1
             
             # หน่วงเวลา 5 วินาที (หากตอนทดสอบรู้สึกว่าช้าไป ปรับลดเหลือ 1 หรือ 0.5 วินาทีได้นะครับ)
-            await asyncio.sleep(5)
+            await asyncio.sleep(3)
             
     except WebSocketDisconnect:
         print("🔴 Client disconnected")
