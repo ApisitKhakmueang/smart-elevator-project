@@ -1,7 +1,7 @@
-export default function Home() {
+import ElevatorSystem from "../components/ElevatorSystem"
+
+export default function Page() {
   return (
-    <div>
-      test
-    </div>
-  );
+    <ElevatorSystem />
+  ) 
 }
