@@ -1,4 +1,4 @@
-# RL Elevator Simulation System
+# Smart Elevator Project
 
 An AI-powered intelligent elevator scheduling system using Reinforcement Learning (PPO algorithm) to optimize elevator operations and reduce passenger wait times in multi-floor buildings.
 
