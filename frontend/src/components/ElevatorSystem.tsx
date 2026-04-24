@@ -9,7 +9,7 @@ const NUM_ELEVATORS = 6;
 const TOTAL_FLOORS = 10;
 
 export default function ElevatorDashboard() {
-  const { data, isConnected } = useElevatorWebsocket('ws://127.0.0.1:8000/ws/step');
+  const { data, isConnected } = useElevatorWebsocket();
 
   const step = data?.step ?? 0;
   const totalScore = data?.total_score ?? 0;

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 
 interface CarCalls {
@@ -16,11 +16,15 @@ export interface ElevatorState {
   done: boolean;
 }
 
-export function useElevatorWebsocket(url: string) {
+export function useElevatorWebsocket() {
   const [data, setData] = useState<ElevatorState | null>(null);
 
+  const wsUrl = useMemo(() => {
+    return `${process.env.NEXT_PUBLIC_BACKEND_WEBSOCKET}/step`
+  }, [])
+
   // 🌟 1. ใช้ useWebSocket แทน WebSocket API แบบเดิม
-  const { lastJsonMessage, readyState } = useWebSocket(url, {
+  const { lastJsonMessage, readyState } = useWebSocket(wsUrl, {
     shouldReconnect: () => true,
     reconnectAttempts: 20,
     reconnectInterval: 3000, // พยายามเชื่อมต่อใหม่ทุกๆ 3 วินาที หากเซิร์ฟเวอร์หลุด
