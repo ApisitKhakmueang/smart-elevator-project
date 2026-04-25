@@ -7,10 +7,11 @@ ENV PYTHONUNBUFFERED=1 \
     PORT=8080
 
 # 3. ติดตั้ง Dependencies ของระบบ Linux
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update --fix-missing && apt-get install -y --no-install-recommends \
     build-essential \
     libgl1-mesa-glx \
     libglib2.0-0 \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # 4. กำหนด Working Directory
