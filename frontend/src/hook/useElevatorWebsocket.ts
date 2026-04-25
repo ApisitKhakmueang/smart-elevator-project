@@ -20,7 +20,7 @@ export function useElevatorWebsocket() {
   const [data, setData] = useState<ElevatorState | null>(null);
 
   const wsUrl = useMemo(() => {
-    return `${process.env.NEXT_PUBLIC_BACKEND_WEBSOCKET}/step`;
+    return `${process.env.NEXT_PUBLIC_BACKEND_WEBSOCKET}/ws/step`;
   }, []);
 
   // 🌟 ใช้ onMessage จัดการข้อมูลโดยตรง แทนการใช้ useEffect
