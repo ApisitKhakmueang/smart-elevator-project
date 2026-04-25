@@ -31,7 +31,7 @@ export default function ElevatorDashboard() {
           <div>
             <h1 className="text-2xl font-semibold text-white flex items-center gap-3">
               <span className={`w-3 h-3 rounded-full ${isConnected ? 'bg-[#3ECF8E] animate-pulse' : 'bg-red-500'}`}></span>
-              RL Elevator Simulation
+              Smart Elevator Simulation
             </h1>
             <div className="flex gap-4 mt-2 text-sm text-zinc-400">
               <p>Step: <span className="font-mono text-zinc-200">{step}</span></p>
