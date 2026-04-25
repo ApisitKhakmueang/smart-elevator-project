@@ -32,27 +32,32 @@ export default function ElevatorShaft({ elevator }: Props) {
       </div>
 
       {/* ช่องลิฟต์ (Shaft) */}
-      <div className="relative w-full h-120 bg-[#141414] border border-zinc-800 rounded-md overflow-hidden flex flex-col-reverse shadow-inner">
-        {Array.from({ length: TOTAL_FLOORS }).map((_, i) => (
-          <div
-            key={i}
-            className="flex-1 w-full border-t border-zinc-800/50 flex items-center justify-center opacity-30"
-          >
-            <span className="text-[10px] text-zinc-500">{i + 1}</span>
-          </div>
-        ))}
+      <div className="w-full h-120 bg-[#141414] py-3 border border-zinc-800 rounded-md overflow-hidden flex flex-col shadow-inner">
+        
+        {/* 2. สร้างกล่อง relative ด้านในเพื่อให้ตำแหน่งลิฟต์อ้างอิงจากเส้นนี้ ไม่ทะลุไปถึงขอบตึก */}
+        <div className="relative w-full h-full flex flex-col-reverse">
+          {Array.from({ length: TOTAL_FLOORS }).map((_, i) => (
+            <div
+              key={i}
+              className="flex-1 w-full border-t border-zinc-800/50 flex items-center justify-center opacity-30"
+            >
+              <span className="text-[10px] text-zinc-500">{i + 1}</span>
+            </div>
+          ))}
 
-        {/* ตัวลิฟต์ (Car) */}
-        <div
-          className="absolute left-0 right-0 mx-auto w-[80%] flex items-center justify-center bg-[#3ECF8E] border-2 border-[#1c1c1c] rounded-sm transition-all duration-300 ease-out shadow-[0_0_10px_rgba(62,207,142,0.3)]"
-          style={{
-            height: `${100 / TOTAL_FLOORS}%`,
-            bottom: `${bottomPosition}%`,
-          }}
-        >
-          <span className="text-zinc-950 font-bold text-xs">
-            {displayFloor}
-          </span>
+          {/* ตัวลิฟต์ (Car) */}
+          <div
+            className="absolute left-0 right-0 mx-auto w-[80%] flex items-center justify-center bg-[#3ECF8E] border-2 border-[#1c1c1c] rounded-sm transition-all duration-300 ease-out shadow-[0_0_10px_rgba(62,207,142,0.3)] z-10"
+            style={{
+              // 3. ใช้ calc() หดความสูงลง 4px และดันจากด้านล่าง 2px เพื่อให้อยู่ตรงกลางช่องพอดี ไม่ทับเส้นแบ่งชั้น
+              height: `calc(${100 / TOTAL_FLOORS}% - 4px)`,
+              bottom: `calc(${bottomPosition}% + 2px)`,
+            }}
+          >
+            <span className="text-zinc-950 font-bold text-xs">
+              {displayFloor}
+            </span>
+          </div>
         </div>
       </div>
 
