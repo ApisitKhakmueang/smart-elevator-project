@@ -1,33 +1,32 @@
-# 1. ใช้ Python 3.10-slim เพื่อขนาด Image ที่เล็กและติดตั้ง Library ได้ครบ
+# 1. ใช้ Python 3.10-slim เพื่อขนาด Image ที่เล็ก
 FROM python:3.10-slim
 
-# 2. ตั้งค่า Environment Variables สำหรับระบบ Log และ Port
+# 2. ตั้งค่า Environment Variables
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PORT=8080
 
-# 3. ติดตั้ง Dependencies พื้นฐานของระบบ Linux ที่ AI Library จำเป็นต้องใช้
+# 3. ติดตั้ง Dependencies ของระบบ Linux
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libgl1-mesa-glx \
     libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
-# 4. กำหนด Working Directory ภายใน Container
+# 4. กำหนด Working Directory
 WORKDIR /app
 
-# 5. ติดตั้ง Python Library จากไฟล์ requirements.txt ใหม่ของคุณ
+# 5. ติดตั้ง Python Library และล้าง Cache ทันทีเพื่อประหยัดพื้นที่
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+    pip install --no-cache-dir -r requirements.txt && \
     rm -rf /root/.cache/pip
 
-# 6. คัดลอกไฟล์ทั้งหมด (server.py, โฟลเดอร์ model/ และไฟล์โมเดล) เข้าไป
+# 6. คัดลอกไฟล์ทั้งหมดเข้า Container (เขียนในบรรทัดเดียว)
 COPY . .
 
-# 7. แจ้ง Port ที่จะใช้สื่อสาร (Railway จะส่งค่านี้มาให้ผ่าน ENV)
+# 7. แจ้ง Port
 EXPOSE 8080
 
-# 8. คำสั่งเริ่มรัน Server โดยใช้ Uvicorn
-# ดึงค่าพอร์ตจาก $PORT ที่ Railway กำหนดให้โดยอัตโนมัติ
+# 8. คำสั่งเริ่มรัน Server
 CMD ["sh", "-c", "uvicorn server:app --host 0.0.0.0 --port ${PORT}"]
