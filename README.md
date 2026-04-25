@@ -41,11 +41,12 @@ This is a university AI engineering project that combines machine learning with 
 ### Backend
 
 - **Framework**: FastAPI 0.135.1
-- **Language**: Python
+- **Language**: Python 3.9+
 - **ML Library**: Stable Baselines3 (PPO)
-- **Environment**: Custom Gym environment
+- **Environment**: Gymnasium (Custom Gym environment)
+- **Server**: Uvicorn ASGI server
 - **Real-time**: WebSocket support
-- **Scientific**: NumPy, OpenCV, MediaPipe, Gymnasium
+- **Scientific Computing**: NumPy
 
 ## 📋 Prerequisites
 
@@ -64,7 +65,7 @@ This is a university AI engineering project that combines machine learning with 
 cd backend
 
 # Install Python dependencies
-pip install -r requirementst.txt
+pip install -r requirements.txt
 
 # Verify installation
 python -c "import stable_baselines3; print('Stable Baselines3 installed successfully')"
@@ -134,7 +135,7 @@ You should see the **RL Elevator Simulation Dashboard** with:
 FinalProject/
 ├── backend/
 │   ├── server.py                 # FastAPI server entry point
-│   ├── requirementst.txt         # Python dependencies
+│   ├── requirements.txt          # Python dependencies
 │   └── model/
 │       ├── enviroment_final.py   # Gym environment definition
 │       ├── ppo_smart_elevator_final    # Trained PPO model
